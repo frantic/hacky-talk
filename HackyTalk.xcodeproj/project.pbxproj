@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E201542FE67009FA848 /* UIKit.framework */; };
+		00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E221542FE67009FA848 /* Foundation.framework */; };
+		00DF5E251542FE67009FA848 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E241542FE67009FA848 /* CoreGraphics.framework */; };
+		00DF5E2B1542FE67009FA848 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00DF5E291542FE67009FA848 /* InfoPlist.strings */; };
+		00DF5E2D1542FE67009FA848 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF5E2C1542FE67009FA848 /* main.m */; };
+		00DF5E311542FE67009FA848 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF5E301542FE67009FA848 /* HTAppDelegate.m */; };
+		00DF5E341542FE67009FA848 /* HTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF5E331542FE67009FA848 /* HTViewController.m */; };
+		00DF5E371542FE67009FA848 /* HTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DF5E351542FE67009FA848 /* HTViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00DF5E1C1542FE67009FA848 /* HackyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00DF5E201542FE67009FA848 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		00DF5E221542FE67009FA848 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		00DF5E241542FE67009FA848 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		00DF5E281542FE67009FA848 /* HackyTalk-Info.plist */ = {isa = PBXFileReference; path = "HackyTalk-Info.plist"; sourceTree = "<group>"; };
+		00DF5E2A1542FE67009FA848 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		00DF5E2C1542FE67009FA848 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		00DF5E2E1542FE67009FA848 /* HackyTalk-Prefix.pch */ = {isa = PBXFileReference; path = "HackyTalk-Prefix.pch"; sourceTree = "<group>"; };
+		00DF5E2F1542FE67009FA848 /* HTAppDelegate.h */ = {isa = PBXFileReference; path = HTAppDelegate.h; sourceTree = "<group>"; };
+		00DF5E301542FE67009FA848 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
+		00DF5E321542FE67009FA848 /* HTViewController.h */ = {isa = PBXFileReference; path = HTViewController.h; sourceTree = "<group>"; };
+		00DF5E331542FE67009FA848 /* HTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTViewController.m; sourceTree = "<group>"; };
+		00DF5E361542FE67009FA848 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HTViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00DF5E191542FE67009FA848 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */,
+				00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */,
+				00DF5E251542FE67009FA848 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00DF5E111542FE66009FA848 = {
+			isa = PBXGroup;
+			children = (
+				00DF5E261542FE67009FA848 /* HackyTalk */,
+				00DF5E1F1542FE67009FA848 /* Frameworks */,
+				00DF5E1D1542FE67009FA848 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00DF5E1D1542FE67009FA848 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00DF5E1C1542FE67009FA848 /* HackyTalk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00DF5E1F1542FE67009FA848 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00DF5E201542FE67009FA848 /* UIKit.framework */,
+				00DF5E221542FE67009FA848 /* Foundation.framework */,
+				00DF5E241542FE67009FA848 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00DF5E261542FE67009FA848 /* HackyTalk */ = {
+			isa = PBXGroup;
+			children = (
+				00DF5E2F1542FE67009FA848 /* HTAppDelegate.h */,
+				00DF5E301542FE67009FA848 /* HTAppDelegate.m */,
+				00DF5E321542FE67009FA848 /* HTViewController.h */,
+				00DF5E331542FE67009FA848 /* HTViewController.m */,
+				00DF5E351542FE67009FA848 /* HTViewController.xib */,
+				00DF5E271542FE67009FA848 /* Supporting Files */,
+			);
+			path = HackyTalk;
+			sourceTree = "<group>";
+		};
+		00DF5E271542FE67009FA848 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00DF5E281542FE67009FA848 /* HackyTalk-Info.plist */,
+				00DF5E291542FE67009FA848 /* InfoPlist.strings */,
+				00DF5E2C1542FE67009FA848 /* main.m */,
+				00DF5E2E1542FE67009FA848 /* HackyTalk-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00DF5E1B1542FE67009FA848 /* HackyTalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00DF5E3A1542FE67009FA848 /* Build configuration list for PBXNativeTarget "HackyTalk" */;
+			buildPhases = (
+				00DF5E181542FE67009FA848 /* Sources */,
+				00DF5E191542FE67009FA848 /* Frameworks */,
+				00DF5E1A1542FE67009FA848 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HackyTalk;
+			productName = HackyTalk;
+			productReference = 00DF5E1C1542FE67009FA848 /* HackyTalk.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00DF5E131542FE66009FA848 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = HT;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 00DF5E161542FE66009FA848 /* Build configuration list for PBXProject "HackyTalk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00DF5E111542FE66009FA848;
+			productRefGroup = 00DF5E1D1542FE67009FA848 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00DF5E1B1542FE67009FA848 /* HackyTalk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00DF5E1A1542FE67009FA848 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DF5E2B1542FE67009FA848 /* InfoPlist.strings in Resources */,
+				00DF5E371542FE67009FA848 /* HTViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00DF5E181542FE67009FA848 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00DF5E2D1542FE67009FA848 /* main.m in Sources */,
+				00DF5E311542FE67009FA848 /* HTAppDelegate.m in Sources */,
+				00DF5E341542FE67009FA848 /* HTViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		00DF5E291542FE67009FA848 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00DF5E2A1542FE67009FA848 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		00DF5E351542FE67009FA848 /* HTViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				00DF5E361542FE67009FA848 /* en */,
+			);
+			name = HTViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00DF5E381542FE67009FA848 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		00DF5E391542FE67009FA848 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00DF5E3B1542FE67009FA848 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HackyTalk/HackyTalk-Prefix.pch";
+				INFOPLIST_FILE = "HackyTalk/HackyTalk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00DF5E3C1542FE67009FA848 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HackyTalk/HackyTalk-Prefix.pch";
+				INFOPLIST_FILE = "HackyTalk/HackyTalk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00DF5E161542FE66009FA848 /* Build configuration list for PBXProject "HackyTalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DF5E381542FE67009FA848 /* Debug */,
+				00DF5E391542FE67009FA848 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00DF5E3A1542FE67009FA848 /* Build configuration list for PBXNativeTarget "HackyTalk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00DF5E3B1542FE67009FA848 /* Debug */,
+				00DF5E3C1542FE67009FA848 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00DF5E131542FE66009FA848 /* Project object */;
+}
