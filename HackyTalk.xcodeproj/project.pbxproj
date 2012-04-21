@@ -15,6 +15,7 @@
 		00DF5E311542FE67009FA848 /* HTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF5E301542FE67009FA848 /* HTAppDelegate.m */; };
 		00DF5E341542FE67009FA848 /* HTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00DF5E331542FE67009FA848 /* HTViewController.m */; };
 		00DF5E371542FE67009FA848 /* HTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00DF5E351542FE67009FA848 /* HTViewController.xib */; };
+		00DF5E3E1542FFD0009FA848 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E3D1542FFD0009FA848 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,16 @@
 		00DF5E201542FE67009FA848 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00DF5E221542FE67009FA848 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		00DF5E241542FE67009FA848 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		00DF5E281542FE67009FA848 /* HackyTalk-Info.plist */ = {isa = PBXFileReference; path = "HackyTalk-Info.plist"; sourceTree = "<group>"; };
+		00DF5E281542FE67009FA848 /* HackyTalk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HackyTalk-Info.plist"; sourceTree = "<group>"; };
 		00DF5E2A1542FE67009FA848 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		00DF5E2C1542FE67009FA848 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		00DF5E2E1542FE67009FA848 /* HackyTalk-Prefix.pch */ = {isa = PBXFileReference; path = "HackyTalk-Prefix.pch"; sourceTree = "<group>"; };
-		00DF5E2F1542FE67009FA848 /* HTAppDelegate.h */ = {isa = PBXFileReference; path = HTAppDelegate.h; sourceTree = "<group>"; };
+		00DF5E2E1542FE67009FA848 /* HackyTalk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HackyTalk-Prefix.pch"; sourceTree = "<group>"; };
+		00DF5E2F1542FE67009FA848 /* HTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTAppDelegate.h; sourceTree = "<group>"; };
 		00DF5E301542FE67009FA848 /* HTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTAppDelegate.m; sourceTree = "<group>"; };
-		00DF5E321542FE67009FA848 /* HTViewController.h */ = {isa = PBXFileReference; path = HTViewController.h; sourceTree = "<group>"; };
+		00DF5E321542FE67009FA848 /* HTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTViewController.h; sourceTree = "<group>"; };
 		00DF5E331542FE67009FA848 /* HTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTViewController.m; sourceTree = "<group>"; };
 		00DF5E361542FE67009FA848 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/HTViewController.xib; sourceTree = "<group>"; };
+		00DF5E3D1542FFD0009FA848 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00DF5E3E1542FFD0009FA848 /* AVFoundation.framework in Frameworks */,
 				00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */,
 				00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */,
 				00DF5E251542FE67009FA848 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +70,7 @@
 		00DF5E1F1542FE67009FA848 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				00DF5E3D1542FFD0009FA848 /* AVFoundation.framework */,
 				00DF5E201542FE67009FA848 /* UIKit.framework */,
 				00DF5E221542FE67009FA848 /* Foundation.framework */,
 				00DF5E241542FE67009FA848 /* CoreGraphics.framework */,

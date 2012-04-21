@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface HTViewController : UIViewController
+
+- (IBAction)startRecording:(id)sender;
+- (IBAction)stopRecording:(id)sender;
 
 @end
