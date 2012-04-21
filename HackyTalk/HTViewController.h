@@ -10,7 +10,7 @@
 #import "HTAPI.h"
 #import "HTAudio.h"
 
-@interface HTViewController : UIViewController
+@interface HTViewController : UIViewController <FBRequestDelegate>
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;

@@ -68,4 +68,9 @@ typedef struct {
     }
 }
 
+- (Facebook *)fb
+{
+    return [(HTAppDelegate *)[[UIApplication sharedApplication] delegate] facebook];
+}
+
 @end

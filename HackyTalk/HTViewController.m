@@ -41,7 +41,12 @@
 
 - (IBAction)ping:(id)sender
 {
+    [api.fb requestWithGraphPath:@"me/friends" andDelegate:self];
+}
 
+- (void)request:(FBRequest *)request didLoad:(id)result
+{
+    NSLog(@"Result = %@", result);
 }
 
 @end
