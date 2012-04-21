@@ -14,7 +14,7 @@
 
 @implementation HTPeoplePickerViewController {
     HTAPI *api;
-    NSMutableArray *friends;
+    NSArray *friends;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -38,11 +38,8 @@
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    friends = [NSMutableArray array];
-    for (NSDictionary *friend in [result objectForKey:@"data"]) {
-        [friends addObject:[friend objectForKey:@"name"]];
-    }
-    NSLog(@"Got %d friends", [friends count]);
+    friends = [result objectForKey:@"data"];
+    NSLog(@"Got %d friends: %@", [friends count], result);
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
 }
@@ -69,7 +66,7 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [friends objectAtIndex:[indexPath row]];
+    cell.textLabel.text = [[friends objectAtIndex:[indexPath row]] objectForKey:@"name"];
     
     return cell;
 }

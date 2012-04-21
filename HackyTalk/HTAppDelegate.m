@@ -33,10 +33,6 @@
         _facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
     
-    if (![_facebook isSessionValid]) {
-        [_facebook authorize:nil];
-    }
-    
     return YES;
 }
 

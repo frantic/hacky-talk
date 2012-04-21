@@ -16,6 +16,7 @@
     HTAudio *audio;
     HTAPI *api;
 }
+@synthesize connectButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +27,12 @@
         api = [HTAPI api];
     }
     return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    connectButton.hidden = [api.fb isSessionValid];
 }
 
 - (IBAction)startRecording:(id)sender
@@ -56,9 +63,14 @@
     [api signInWithID:@"frantic"];
 }
 
-- (void)request:(FBRequest *)request didLoad:(id)result
+- (IBAction)connectFacebook:(id)sender
 {
-    NSLog(@"Result = %@", result);
+    [api.fb authorize:nil];
+}
+
+- (void)viewDidUnload {
+    [self setConnectButton:nil];
+    [super viewDidUnload];
 }
 
 @end

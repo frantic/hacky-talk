@@ -13,11 +13,14 @@
 
 @interface HTViewController : UIViewController <FBRequestDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
 
 - (IBAction)ping:(id)sender;
 - (IBAction)selectFriend:(id)sender;
 - (IBAction)logIn:(id)sender;
+- (IBAction)connectFacebook:(id)sender;
 
 @end
