@@ -78,4 +78,9 @@
     }
 }
 
+- (NSData *)recordedData
+{
+    return [NSData dataWithContentsOfURL:recorder.url];
+}
+
 @end

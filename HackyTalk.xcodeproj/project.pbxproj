@@ -11,6 +11,7 @@
 		00671BE1154343CA0051EB96 /* HTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 00671BE0154343CA0051EB96 /* HTAudio.m */; };
 		00671BF215434C020051EB96 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 00671BE515434C020051EB96 /* FBDialog.bundle */; };
 		00671BF315434C020051EB96 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00671BEB15434C020051EB96 /* libfacebook_ios_sdk.a */; };
+		00671BF6154355820051EB96 /* HTPeoplePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00671BF5154355810051EB96 /* HTPeoplePickerViewController.m */; };
 		00986B0A1543285A00047943 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 00986B091543285A00047943 /* GCDAsyncSocket.m */; };
 		00986B0D15432ABC00047943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0C15432ABC00047943 /* Security.framework */; };
 		00986B0F15432AE800047943 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0E15432AE800047943 /* CFNetwork.framework */; };
@@ -45,6 +46,8 @@
 		00671BEF15434C020051EB96 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		00671BF015434C020051EB96 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		00671BF115434C020051EB96 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		00671BF4154355810051EB96 /* HTPeoplePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTPeoplePickerViewController.h; sourceTree = "<group>"; };
+		00671BF5154355810051EB96 /* HTPeoplePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTPeoplePickerViewController.m; sourceTree = "<group>"; };
 		00986B081543285A00047943 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		00986B091543285A00047943 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		00986B0C15432ABC00047943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -146,6 +149,8 @@
 				00DF5E321542FE67009FA848 /* HTViewController.h */,
 				00DF5E331542FE67009FA848 /* HTViewController.m */,
 				00DF5E351542FE67009FA848 /* HTViewController.xib */,
+				00671BF4154355810051EB96 /* HTPeoplePickerViewController.h */,
+				00671BF5154355810051EB96 /* HTPeoplePickerViewController.m */,
 				00671BDB15433BC60051EB96 /* HTAPI.h */,
 				00671BDC15433BC60051EB96 /* HTAPI.m */,
 				00671BDF154343CA0051EB96 /* HTAudio.h */,
@@ -236,6 +241,7 @@
 				00986B0A1543285A00047943 /* GCDAsyncSocket.m in Sources */,
 				00671BDD15433BC60051EB96 /* HTAPI.m in Sources */,
 				00671BE1154343CA0051EB96 /* HTAudio.m in Sources */,
+				00671BF6154355820051EB96 /* HTPeoplePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +288,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_LDFLAGS = (
+					"-objc",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -301,6 +311,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-objc",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -312,6 +326,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackyTalk/HackyTalk-Prefix.pch";
 				INFOPLIST_FILE = "HackyTalk/HackyTalk-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/facebook-ios-sdk\"",
@@ -327,6 +342,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HackyTalk/HackyTalk-Prefix.pch";
 				INFOPLIST_FILE = "HackyTalk/HackyTalk-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/facebook-ios-sdk\"",

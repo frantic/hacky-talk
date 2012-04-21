@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HTPeoplePickerViewController.h"
 #import "HTAPI.h"
 #import "HTAudio.h"
 
@@ -16,5 +17,7 @@
 - (IBAction)stopRecording:(id)sender;
 
 - (IBAction)ping:(id)sender;
+- (IBAction)selectFriend:(id)sender;
+- (IBAction)logIn:(id)sender;
 
 @end

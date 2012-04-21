@@ -13,12 +13,27 @@
 typedef struct {
     Byte facebook;
     Byte command;
-    UInt32 size;
+    NSUInteger size;
 } HTPacketHeader;
+
+@interface HTAPI (Private)
+
+- (void)fireJSON:(NSDictionary *)dict;
+
+@end
 
 @implementation HTAPI
 
 @synthesize isConnected = _isConnected;
+
+static HTAPI *_sharedInstance = nil;
+
++ (HTAPI *)api
+{
+    if (_sharedInstance == nil)
+        _sharedInstance = [[HTAPI alloc] init];
+    return _sharedInstance;
+}
 
 - (void)signInWithID:(NSString *)userId
 {
@@ -28,25 +43,28 @@ typedef struct {
     if (error) {
         NSLog(@"Something really strange have happened during socket init %@", error);
     } else {
-        HTPacketHeader loginHeader;
-        loginHeader.facebook = 0xfb;
-        loginHeader.command = 0x01;
-        loginHeader.size = [userId lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
-        NSData *headerData = [NSData dataWithBytes:&loginHeader length:sizeof(loginHeader)];
-        [socket writeData:headerData withTimeout:FOREVER tag:0];
-        [socket writeData:[userId dataUsingEncoding:NSUTF8StringEncoding] withTimeout:FOREVER tag:0x01];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:@"auth" forKey:@"cmd"];
+        [params setObject:userId forKey:@"id"];
+        [self fireJSON:params];
     }
 }
 
 - (void)sendAudioData:(NSData *)data to:(NSString *)user
 {
-    HTPacketHeader audioHeader;
-    audioHeader.facebook = 0xfb;
-    audioHeader.command = 0x02;
-    audioHeader.size = [data length];
-    NSData *headerData = [NSData dataWithBytes:&audioHeader length:sizeof(audioHeader)];
-    [socket writeData:headerData withTimeout:FOREVER tag:0x02];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@"send" forKey:@"cmd"];
+    [params setObject:[NSNumber numberWithInt:[data length]] forKey:@"size"];
     [socket writeData:data withTimeout:FOREVER tag:0x02];
+}
+
+- (void)fireJSON:(NSDictionary *)dict
+{
+    
+    NSString *json = [dict JSONRepresentation];
+    NSLog(@"JSON >> %@", json);
+    NSData *data = [[json stringByAppendingString:@"\0"] dataUsingEncoding:NSUTF8StringEncoding];
+    [socket writeData:data withTimeout:FOREVER tag:0];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port

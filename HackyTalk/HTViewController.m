@@ -21,9 +21,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.navigationItem.title = @"HackyTalk";
         audio = [[HTAudio alloc] init];
-        api = [[HTAPI alloc] init];
-        [api signInWithID:@"frantic"];
+        api = [HTAPI api];
     }
     return self;
 }
@@ -36,12 +36,24 @@
 - (IBAction)stopRecording:(id)sender
 {
     [audio stopRecording];
+    [api sendAudioData:[audio recordedData] to:@"123"];
     [audio play];
 }
 
 - (IBAction)ping:(id)sender
 {
-    [api.fb requestWithGraphPath:@"me/friends" andDelegate:self];
+
+}
+
+- (IBAction)selectFriend:(id)sender
+{
+    HTPeoplePickerViewController *peoplePicker = [[HTPeoplePickerViewController alloc] init];
+    [self.navigationController pushViewController:peoplePicker animated:YES];
+}
+
+- (IBAction)logIn:(id)sender
+{
+    [api signInWithID:@"frantic"];
 }
 
 - (void)request:(FBRequest *)request didLoad:(id)result

@@ -11,6 +11,7 @@
 
 @interface HTAudio : NSObject
 
+- (NSData *)recordedData;
 - (void)startRecording;
 - (void)stopRecording;
 - (void)play;

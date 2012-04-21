@@ -10,6 +10,7 @@
 #import "GCDAsyncSocket.h"
 #import "FBConnect.h"
 #import "HTAppDelegate.h"
+#import "JSON.h"
 
 @interface HTAPI : NSObject <GCDAsyncSocketDelegate> {
     GCDAsyncSocket *socket;
@@ -18,6 +19,7 @@
 @property (nonatomic, readonly) BOOL isConnected;
 @property (nonatomic, readonly) Facebook *fb;
 
++ (HTAPI *)api;
 - (void)signInWithID:(NSString *)userId;
 - (void)sendAudioData:(NSData *)data to:(NSString *)user;
 
