@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00671BDD15433BC60051EB96 /* HTAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 00671BDC15433BC60051EB96 /* HTAPI.m */; };
+		00671BE1154343CA0051EB96 /* HTAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 00671BE0154343CA0051EB96 /* HTAudio.m */; };
+		00986B0A1543285A00047943 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 00986B091543285A00047943 /* GCDAsyncSocket.m */; };
+		00986B0D15432ABC00047943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0C15432ABC00047943 /* Security.framework */; };
+		00986B0F15432AE800047943 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0E15432AE800047943 /* CFNetwork.framework */; };
 		00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E201542FE67009FA848 /* UIKit.framework */; };
 		00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E221542FE67009FA848 /* Foundation.framework */; };
 		00DF5E251542FE67009FA848 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E241542FE67009FA848 /* CoreGraphics.framework */; };
@@ -19,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00671BDB15433BC60051EB96 /* HTAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAPI.h; sourceTree = "<group>"; };
+		00671BDC15433BC60051EB96 /* HTAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAPI.m; sourceTree = "<group>"; };
+		00671BDF154343CA0051EB96 /* HTAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTAudio.h; sourceTree = "<group>"; };
+		00671BE0154343CA0051EB96 /* HTAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTAudio.m; sourceTree = "<group>"; };
+		00986B081543285A00047943 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		00986B091543285A00047943 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		00986B0C15432ABC00047943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		00986B0E15432AE800047943 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		00DF5E1C1542FE67009FA848 /* HackyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DF5E201542FE67009FA848 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00DF5E221542FE67009FA848 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -40,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00986B0F15432AE800047943 /* CFNetwork.framework in Frameworks */,
+				00986B0D15432ABC00047943 /* Security.framework in Frameworks */,
 				00DF5E3E1542FFD0009FA848 /* AVFoundation.framework in Frameworks */,
 				00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */,
 				00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */,
@@ -53,6 +68,8 @@
 		00DF5E111542FE66009FA848 = {
 			isa = PBXGroup;
 			children = (
+				00986B0E15432AE800047943 /* CFNetwork.framework */,
+				00986B0C15432ABC00047943 /* Security.framework */,
 				00DF5E261542FE67009FA848 /* HackyTalk */,
 				00DF5E1F1542FE67009FA848 /* Frameworks */,
 				00DF5E1D1542FE67009FA848 /* Products */,
@@ -81,11 +98,17 @@
 		00DF5E261542FE67009FA848 /* HackyTalk */ = {
 			isa = PBXGroup;
 			children = (
+				00986B081543285A00047943 /* GCDAsyncSocket.h */,
+				00986B091543285A00047943 /* GCDAsyncSocket.m */,
 				00DF5E2F1542FE67009FA848 /* HTAppDelegate.h */,
 				00DF5E301542FE67009FA848 /* HTAppDelegate.m */,
 				00DF5E321542FE67009FA848 /* HTViewController.h */,
 				00DF5E331542FE67009FA848 /* HTViewController.m */,
 				00DF5E351542FE67009FA848 /* HTViewController.xib */,
+				00671BDB15433BC60051EB96 /* HTAPI.h */,
+				00671BDC15433BC60051EB96 /* HTAPI.m */,
+				00671BDF154343CA0051EB96 /* HTAudio.h */,
+				00671BE0154343CA0051EB96 /* HTAudio.m */,
 				00DF5E271542FE67009FA848 /* Supporting Files */,
 			);
 			path = HackyTalk;
@@ -168,6 +191,9 @@
 				00DF5E2D1542FE67009FA848 /* main.m in Sources */,
 				00DF5E311542FE67009FA848 /* HTAppDelegate.m in Sources */,
 				00DF5E341542FE67009FA848 /* HTViewController.m in Sources */,
+				00986B0A1543285A00047943 /* GCDAsyncSocket.m in Sources */,
+				00671BDD15433BC60051EB96 /* HTAPI.m in Sources */,
+				00671BE1154343CA0051EB96 /* HTAudio.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +305,7 @@
 				00DF5E3C1542FE67009FA848 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

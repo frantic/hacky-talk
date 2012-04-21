@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+#import "HTAPI.h"
+#import "HTAudio.h"
 
 @interface HTViewController : UIViewController
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
+
+- (IBAction)ping:(id)sender;
 
 @end
