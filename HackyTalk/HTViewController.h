@@ -24,11 +24,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *speakerLastNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *speakerImage;
 @property (weak, nonatomic) IBOutlet UIView *speakerView;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
 
 - (IBAction)tapFriend:(id)sender;
 - (IBAction)tapOutFriend:(id)sender;
+- (IBAction)playOffline:(id)sender;
 
 @end

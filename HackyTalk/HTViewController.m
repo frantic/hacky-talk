@@ -18,6 +18,7 @@
     HTAPI *api;
     BOOL profileIsLoaded;
     NSMutableArray *friend_ids;
+    NSMutableArray *_pendingAudioData;
 }
 
 @synthesize firstNameLabel;
@@ -31,6 +32,7 @@
 @synthesize speakerLastNameLabel;
 @synthesize speakerImage;
 @synthesize speakerView;
+@synthesize playButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +44,7 @@
         api = [HTAPI api];
         api.delegate = self;
         friend_ids = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", nil];
+        _pendingAudioData = [NSMutableArray array];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFacebookData) name:@"fbDidLogin" object:nil];
     }
     return self;
@@ -72,6 +75,8 @@
     }
     talkDurationLabel.layer.cornerRadius = 5;
     speakerView.hidden = YES;
+    [self.view sendSubviewToBack:playButton];
+    playButton.hidden = YES;
     [self loadFacebookData];
 }
 
@@ -113,7 +118,7 @@
     connectionStatus.backgroundColor = connected ? [UIColor greenColor] : [UIColor redColor];
 }
 
-- (void)incomingAudioData:(NSData *)data from:(NSString *)user
+- (void)playAudioData:(NSData *)data from:(NSString *)user
 {
     [audio playData:data];
     speakerFirstNameLabel.text = @"Incoming message...";
@@ -126,6 +131,22 @@
     }
     talkDurationLabel.text = [NSString stringWithFormat:@"%.1f s", audio.player.duration];
     speakerView.hidden = NO;
+}
+
+- (void)saveAudioDataForFuture:(NSData *)data from:(NSString *)user
+{
+    NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:data, @"data", user, @"user", nil];
+    [_pendingAudioData addObject:d];
+    playButton.hidden = NO;
+    
+}
+
+- (void)incomingAudioData:(NSData *)data from:(NSString *)user
+{
+    if (audio.player.isPlaying)
+        [self saveAudioDataForFuture:data from:user];
+    else
+        [self playAudioData:data from:user];
 }
 
 - (void)audioDidFinishPlaying
@@ -145,6 +166,7 @@
     [self setSpeakerLastNameLabel:nil];
     [self setSpeakerImage:nil];
     [self setSpeakerView:nil];
+    [self setPlayButton:nil];
     [super viewDidUnload];
 }
 
@@ -176,6 +198,16 @@
 - (IBAction)tapOutFriend:(id)sender
 {
     [self setFriend:nil forButton:sender];
+}
+
+- (IBAction)playOffline:(id)sender
+{
+    if ([_pendingAudioData count] > 0 && !audio.player.isPlaying) {
+        NSDictionary *d = [_pendingAudioData objectAtIndex:0];
+        [_pendingAudioData removeObjectAtIndex:0];
+        [self playAudioData:[d objectForKey:@"data"] from:[d objectForKey:@"user"]];
+        playButton.hidden = [_pendingAudioData count] == 0;
+    }
 }
 
 @end
