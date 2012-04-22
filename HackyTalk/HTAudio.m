@@ -47,7 +47,6 @@
 
 - (void)startRecording
 {
-    [_recorder deleteRecording];
     [_recorder record];
     NSLog(@"Recording...");
 }

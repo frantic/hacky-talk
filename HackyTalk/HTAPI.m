@@ -12,41 +12,30 @@
 #define TAG_HEADER 1
 #define TAG_BLOB 2
 
-typedef struct {
-    Byte facebook;
-    Byte command;
-    NSUInteger size;
-} HTPacketHeader;
-
 @interface HTAPI (Private)
 
 - (void)fireJSON:(NSDictionary *)dict;
+- (void)fireBLOB:(NSData *)blob;
+- (void)waitForJson;
+- (void)waitForBlob:(NSInteger)size;
 
 @end
 
-@implementation HTAPI {
-    NSData *zero;
-}
+@implementation HTAPI
 
-@synthesize isConnected = _isConnected;
 @synthesize delegate = _delegate;
 
 static HTAPI *_sharedInstance = nil;
+static NSData *_zero = nil;
 
 + (HTAPI *)api
 {
-    if (_sharedInstance == nil)
+    if (_sharedInstance == nil) {
         _sharedInstance = [[HTAPI alloc] init];
-    return _sharedInstance;
-}
-
-- (id)init {
-    self = [super init];
-    if (self) {
         Byte n = 0;
-        zero = [NSData dataWithBytes:&n length:1];
+        _zero = [NSData dataWithBytes:&n length:1];
     }
-    return self;
+    return _sharedInstance;
 }
 
 - (void)signInWithID:(NSString *)userId
@@ -55,6 +44,7 @@ static HTAPI *_sharedInstance = nil;
     if (![socket isConnected]) {
         socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_current_queue()];
         [socket connectToHost:@"172.16.0.62" onPort:8888 withTimeout:FOREVER error:&error];
+        [self waitForJson];
     }
     if (error) {
         NSLog(@"Something really strange have happened during socket init %@", error);
@@ -63,7 +53,6 @@ static HTAPI *_sharedInstance = nil;
         [params setObject:@"auth" forKey:@"cmd"];
         [params setObject:userId forKey:@"id"];
         [self fireJSON:params];
-        [socket readDataToData:zero withTimeout:FOREVER tag:TAG_HEADER];
     }
 }
 
@@ -73,16 +62,46 @@ static HTAPI *_sharedInstance = nil;
     [params setObject:@"send" forKey:@"cmd"];
     [params setObject:[NSNumber numberWithInt:[data length]] forKey:@"size"];
     [self fireJSON:params];
-    [socket writeData:data withTimeout:FOREVER tag:0x02];
+    [self fireBLOB:data];
+}
+
+- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    if (tag == TAG_HEADER) {
+        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@">> %@", json);
+        NSDictionary *params = [json JSONValue];
+        NSInteger size = [[params objectForKey:@"size"] integerValue];
+        [self waitForBlob:size];
+    } else if (tag == TAG_BLOB) {
+        NSLog(@">> [BLOB] %d bytes", [data length]);
+        [self.delegate incomingAudioData:data from:@"123"];
+        [self waitForJson];
+    }
 }
 
 - (void)fireJSON:(NSDictionary *)dict
 {
-    
     NSString *json = [dict JSONRepresentation];
-    NSLog(@"JSON >> %@", json);
+    NSLog(@"<< %@", json);
     NSData *data = [[json stringByAppendingString:@"\0"] dataUsingEncoding:NSUTF8StringEncoding];
-    [socket writeData:data withTimeout:FOREVER tag:TAG_HEADER];
+    [socket writeData:data withTimeout:FOREVER tag:0];
+}
+
+- (void)fireBLOB:(NSData *)blob
+{
+    NSLog(@"<< [BLOB] %d bytes", [blob length]);
+    [socket writeData:blob withTimeout:FOREVER tag:0];
+}
+
+- (void)waitForJson
+{
+    [socket readDataToData:_zero withTimeout:FOREVER tag:TAG_HEADER];
+}
+
+- (void)waitForBlob:(NSInteger)size
+{
+    [socket readDataToLength:size withTimeout:FOREVER tag:TAG_BLOB];
 }
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
@@ -93,36 +112,16 @@ static HTAPI *_sharedInstance = nil;
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
     NSLog(@"Disconnected %@!", err);
-    _isConnected = NO;
-}
-
-- (void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
-{
-    if (tag == 0x01) {
-        _isConnected = YES;
-        NSLog(@"Login packet sent");
-    }
-}
-
-- (void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
-{
-    NSLog(@"Incoming data size = %d", [data length]);
-    if (tag == TAG_HEADER) {
-        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"And this is json %@", json);
-        NSDictionary *params = [json JSONValue];
-        NSInteger size = [[params objectForKey:@"size"] integerValue];
-        [socket readDataToLength:size withTimeout:FOREVER tag:TAG_BLOB];
-    } else if (tag == TAG_BLOB) {
-        NSLog(@"And this is blob");
-        [self.delegate incomingAudioData:data from:@"123"];
-        [socket readDataToData:zero withTimeout:FOREVER tag:TAG_HEADER];
-    }
 }
 
 - (Facebook *)fb
 {
     return [(HTAppDelegate *)[[UIApplication sharedApplication] delegate] facebook];
+}
+
+- (BOOL)isConnected
+{
+    return [socket isConnected];
 }
 
 @end
