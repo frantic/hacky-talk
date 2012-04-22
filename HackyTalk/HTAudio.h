@@ -9,10 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface HTAudio : NSObject
+@protocol HTAudioDelegate <NSObject>
+
+- (void)audioDidFinishPlaying;
+
+@end
+
+@interface HTAudio : NSObject <AVAudioPlayerDelegate>
 
 @property (nonatomic, strong, readonly) AVAudioRecorder *recorder;
 @property (nonatomic, strong, readonly) AVAudioPlayer *player;
+@property (weak, nonatomic) id<HTAudioDelegate> delegate;
 
 - (NSData *)recordedData;
 - (void)startRecording;

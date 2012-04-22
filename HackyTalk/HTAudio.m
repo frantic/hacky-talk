@@ -12,6 +12,7 @@
 
 @synthesize player = _player;
 @synthesize recorder = _recorder;
+@synthesize delegate = _delegate;
 
 - (id)init
 {
@@ -75,6 +76,7 @@
     } else {
         NSError *error = nil;
         _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:file] error:&error];
+        _player.delegate = self;
         if (error)
             NSLog(@"Can't play file %@: %@", file, error);
         else {
@@ -82,6 +84,11 @@
             [_player play];
         }
     }
+}
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    [_delegate audioDidFinishPlaying];
 }
 
 - (NSData *)recordedData

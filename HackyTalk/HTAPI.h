@@ -26,6 +26,7 @@
 @property (nonatomic, readonly) BOOL isConnected;
 @property (nonatomic, readonly) Facebook *fb;
 @property (nonatomic, weak) id<HTAPIDelegate> delegate;
+@property (nonatomic, strong) NSArray *friendsArray;
 
 + (HTAPI *)api;
 - (void)signInWithID:(NSString *)userId;

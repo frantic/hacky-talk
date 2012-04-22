@@ -26,6 +26,7 @@
 }
 
 @synthesize delegate = _delegate;
+@synthesize friendsArray = _friendsArray;
 
 static HTAPI *_sharedInstance = nil;
 static NSData *_zero = nil;

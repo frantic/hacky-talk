@@ -11,7 +11,7 @@
 #import "HTAPI.h"
 #import "HTAudio.h"
 
-@interface HTViewController : UIViewController <FBRequestDelegate, HTAPIDelegate>
+@interface HTViewController : UIViewController <FBRequestDelegate, HTAPIDelegate, HTAudioDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
@@ -19,6 +19,11 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIView *connectionStatus;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *friendsButtons;
+@property (weak, nonatomic) IBOutlet UILabel *talkDurationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *speakerFirstNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *speakerLastNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *speakerImage;
+@property (weak, nonatomic) IBOutlet UIView *speakerView;
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;

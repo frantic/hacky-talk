@@ -14,7 +14,6 @@
 
 @implementation HTPeoplePickerViewController {
     HTAPI *api;
-    NSArray *friends;
 }
 
 @synthesize delegateBlock;
@@ -31,17 +30,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [spinner startAnimating];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
     self.navigationItem.title = @"Select a friend";
-    [api.fb requestWithGraphPath:@"me/friends" andDelegate:self];
+    if (!api.friendsArray) {
+        UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [spinner startAnimating];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+        [api.fb requestWithGraphPath:@"me/friends" andDelegate:self];
+    }
 }
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    friends = [result objectForKey:@"data"];
-    NSLog(@"Got %d friends: %@", [friends count], result);
+    api.friendsArray = [result objectForKey:@"data"];
+    NSLog(@"Got %d friends: %@", [api.friendsArray count], result);
     self.navigationItem.rightBarButtonItem = nil;
     [self.tableView reloadData];
 }
@@ -57,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [friends count];
+    return [api.friendsArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,7 +69,7 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-    cell.textLabel.text = [[friends objectAtIndex:[indexPath row]] objectForKey:@"name"];
+    cell.textLabel.text = [[api.friendsArray objectAtIndex:[indexPath row]] objectForKey:@"name"];
     
     return cell;
 }
@@ -78,7 +79,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.delegateBlock) {
-        delegateBlock([friends objectAtIndex:[indexPath row]]);
+        delegateBlock([api.friendsArray objectAtIndex:[indexPath row]]);
     }
     [self.navigationController popViewControllerAnimated:YES];
 }

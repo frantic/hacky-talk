@@ -25,6 +25,11 @@
 @synthesize spinner;
 @synthesize connectionStatus;
 @synthesize friendsButtons;
+@synthesize talkDurationLabel;
+@synthesize speakerFirstNameLabel;
+@synthesize speakerLastNameLabel;
+@synthesize speakerImage;
+@synthesize speakerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +37,7 @@
     if (self) {
         self.navigationItem.title = @"HackyTalk";
         audio = [[HTAudio alloc] init];
+        audio.delegate = self;
         api = [HTAPI api];
         api.delegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFacebookData) name:@"fbDidLogin" object:nil];
@@ -62,6 +68,8 @@
         b.clipsToBounds = YES;
         b.layer.cornerRadius = 10;
     }
+    talkDurationLabel.layer.cornerRadius = 5;
+    speakerView.hidden = YES;
     [self loadFacebookData];
 }
 
@@ -106,6 +114,13 @@
 - (void)incomingAudioData:(NSData *)data from:(NSString *)user
 {
     [audio playData:data];
+    talkDurationLabel.text = [NSString stringWithFormat:@"%.1f s", audio.player.duration];
+    speakerView.hidden = NO;
+}
+
+- (void)audioDidFinishPlaying
+{
+    speakerView.hidden = YES;
 }
 
 - (void)viewDidUnload {
@@ -115,6 +130,11 @@
     [self setSpinner:nil];
     [self setConnectionStatus:nil];
     [self setFriendsButtons:nil];
+    [self setTalkDurationLabel:nil];
+    [self setSpeakerFirstNameLabel:nil];
+    [self setSpeakerLastNameLabel:nil];
+    [self setSpeakerImage:nil];
+    [self setSpeakerView:nil];
     [super viewDidUnload];
 }
 
