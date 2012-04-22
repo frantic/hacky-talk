@@ -23,6 +23,7 @@
 
 @implementation HTAPI {
     NSString *_userId;
+    NSDictionary *_lastParams;
 }
 
 @synthesize delegate = _delegate;
@@ -75,11 +76,12 @@ static NSData *_zero = nil;
         NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@">> %@", json);
         NSDictionary *params = [json JSONValue];
+        _lastParams = params;
         NSInteger size = [[params objectForKey:@"size"] integerValue];
         [self waitForBlob:size];
     } else if (tag == TAG_BLOB) {
         NSLog(@">> [BLOB] %d bytes", [data length]);
-        [self.delegate incomingAudioData:data from:@"123"];
+        [self.delegate incomingAudioData:data from:[_lastParams objectForKey:@"id"]];
         [self waitForJson];
     }
 }

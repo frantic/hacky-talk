@@ -114,6 +114,14 @@
 - (void)incomingAudioData:(NSData *)data from:(NSString *)user
 {
     [audio playData:data];
+    speakerFirstNameLabel.text = @"Incoming message...";
+    speakerLastNameLabel.text = user;
+    for (NSDictionary *d in api.friendsArray) {
+        if ([user isEqualToString:[d objectForKey:@"id"]]) {
+            speakerLastNameLabel.text = [d objectForKey:@"name"];
+            break;
+        }
+    }
     talkDurationLabel.text = [NSString stringWithFormat:@"%.1f s", audio.player.duration];
     speakerView.hidden = NO;
 }
