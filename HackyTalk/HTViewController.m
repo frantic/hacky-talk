@@ -18,12 +18,13 @@
     HTAPI *api;
     BOOL profileIsLoaded;
 }
-@synthesize connectButton;
+
 @synthesize firstNameLabel;
 @synthesize lastNameLabel;
 @synthesize profilePicture;
 @synthesize spinner;
 @synthesize connectionStatus;
+@synthesize friendsButtons;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +58,10 @@
     profilePicture.layer.cornerRadius = 4;
     profilePicture.clipsToBounds = YES;
     connectionStatus.layer.cornerRadius = 2;
+    for (UIButton *b in friendsButtons) {
+        b.clipsToBounds = YES;
+        b.layer.cornerRadius = 10;
+    }
     [self loadFacebookData];
 }
 
@@ -74,12 +79,6 @@
 {
     [audio stopRecording];
     [api sendAudioData:[audio recordedData] to:@"123"];
-}
-
-- (IBAction)selectFriend:(id)sender
-{
-    HTPeoplePickerViewController *peoplePicker = [[HTPeoplePickerViewController alloc] init];
-    [self.navigationController pushViewController:peoplePicker animated:YES];
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
@@ -110,13 +109,39 @@
 }
 
 - (void)viewDidUnload {
-    [self setConnectButton:nil];
     [self setFirstNameLabel:nil];
     [self setLastNameLabel:nil];
     [self setProfilePicture:nil];
     [self setSpinner:nil];
     [self setConnectionStatus:nil];
+    [self setFriendsButtons:nil];
     [super viewDidUnload];
+}
+
+- (void)setFriend:(NSDictionary *)f forButton:(UIButton *)b
+{
+    if (f) {
+        b.layer.borderWidth = 2;
+        b.layer.borderColor = [[UIColor whiteColor] CGColor];
+        [b setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", [f objectForKey:@"id"]]]]] forState:UIControlStateNormal];
+    } else {
+        b.layer.borderWidth = 0;
+        [b setImage:[UIImage imageNamed:@"add-person"] forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)tapFriend:(id)sender
+{
+    HTPeoplePickerViewController *c = [[HTPeoplePickerViewController alloc] init];
+    [c setDelegateBlock:^(NSDictionary *f) {
+        [self setFriend:f forButton:sender];
+    }];
+    [self.navigationController pushViewController:c animated:YES];
+}
+
+- (IBAction)tapOutFriend:(id)sender
+{
+    [self setFriend:nil forButton:sender];
 }
 
 @end

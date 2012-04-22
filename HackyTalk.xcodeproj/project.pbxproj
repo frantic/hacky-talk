@@ -15,6 +15,7 @@
 		00986B0A1543285A00047943 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 00986B091543285A00047943 /* GCDAsyncSocket.m */; };
 		00986B0D15432ABC00047943 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0C15432ABC00047943 /* Security.framework */; };
 		00986B0F15432AE800047943 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00986B0E15432AE800047943 /* CFNetwork.framework */; };
+		00A10B7C1543D29E0089CBEA /* add-person.png in Resources */ = {isa = PBXBuildFile; fileRef = 00A10B7B1543D29E0089CBEA /* add-person.png */; };
 		00DF5E211542FE67009FA848 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E201542FE67009FA848 /* UIKit.framework */; };
 		00DF5E231542FE67009FA848 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E221542FE67009FA848 /* Foundation.framework */; };
 		00DF5E251542FE67009FA848 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00DF5E241542FE67009FA848 /* CoreGraphics.framework */; };
@@ -52,6 +53,7 @@
 		00986B091543285A00047943 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		00986B0C15432ABC00047943 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		00986B0E15432AE800047943 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		00A10B7B1543D29E0089CBEA /* add-person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add-person.png"; sourceTree = "<group>"; };
 		00DF5E1C1542FE67009FA848 /* HackyTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HackyTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00DF5E201542FE67009FA848 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		00DF5E221542FE67009FA848 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -163,6 +165,7 @@
 		00DF5E271542FE67009FA848 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				00A10B7B1543D29E0089CBEA /* add-person.png */,
 				00DF5E281542FE67009FA848 /* HackyTalk-Info.plist */,
 				00DF5E291542FE67009FA848 /* InfoPlist.strings */,
 				00DF5E2C1542FE67009FA848 /* main.m */,
@@ -225,6 +228,7 @@
 				00DF5E2B1542FE67009FA848 /* InfoPlist.strings in Resources */,
 				00DF5E371542FE67009FA848 /* HTViewController.xib in Resources */,
 				00671BF215434C020051EB96 /* FBDialog.bundle in Resources */,
+				00A10B7C1543D29E0089CBEA /* add-person.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

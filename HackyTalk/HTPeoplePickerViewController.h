@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HTPeoplePickerViewController : UITableViewController <FBRequestDelegate>
+typedef void(^HTSelectedFreindBlock)(NSDictionary *selectedFriend);
+
+@interface HTPeoplePickerViewController : UITableViewController <FBRequestDelegate> {
+    
+}
+
+@property (nonatomic, copy) HTSelectedFreindBlock delegateBlock;
 
 @end

@@ -13,19 +13,17 @@
 
 @interface HTViewController : UIViewController <FBRequestDelegate, HTAPIDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *connectButton;
 @property (weak, nonatomic) IBOutlet UILabel *firstNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIView *connectionStatus;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *friendsButtons;
 
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;
 
-- (IBAction)ping:(id)sender;
-- (IBAction)selectFriend:(id)sender;
-- (IBAction)logIn:(id)sender;
-- (IBAction)connectFacebook:(id)sender;
+- (IBAction)tapFriend:(id)sender;
+- (IBAction)tapOutFriend:(id)sender;
 
 @end
