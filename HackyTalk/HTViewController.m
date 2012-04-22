@@ -17,6 +17,7 @@
     HTAudio *audio;
     HTAPI *api;
     BOOL profileIsLoaded;
+    NSMutableArray *friend_ids;
 }
 
 @synthesize firstNameLabel;
@@ -40,6 +41,7 @@
         audio.delegate = self;
         api = [HTAPI api];
         api.delegate = self;
+        friend_ids = [[NSMutableArray alloc] initWithObjects:@"", @"", @"", @"", nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadFacebookData) name:@"fbDidLogin" object:nil];
     }
     return self;
@@ -86,7 +88,7 @@
 - (void)delayedStop
 {
     [audio stopRecording];
-    [api sendAudioData:[audio recordedData] to:@"123"];
+    [api sendAudioData:[audio recordedData] to:friend_ids];
 }
 
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error
@@ -151,11 +153,15 @@
     if (f) {
         b.layer.borderWidth = 2;
         b.layer.borderColor = [[UIColor whiteColor] CGColor];
-        [b setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", [f objectForKey:@"id"]]]]] forState:UIControlStateNormal];
+        NSString *friend_id = [[NSString alloc] initWithString:[f objectForKey:@"id"]];
+        [b setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", friend_id]]]] forState:UIControlStateNormal];
+        [friend_ids replaceObjectAtIndex:b.tag withObject:friend_id];
     } else {
         b.layer.borderWidth = 0;
+        [friend_ids replaceObjectAtIndex:b.tag withObject:@""];
         [b setImage:[UIImage imageNamed:@"add-person"] forState:UIControlStateNormal];
     }
+    NSLog(@"%@", friend_ids);
 }
 
 - (IBAction)tapFriend:(id)sender

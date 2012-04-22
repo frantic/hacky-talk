@@ -61,11 +61,16 @@ static NSData *_zero = nil;
     }
 }
 
-- (void)sendAudioData:(NSData *)data to:(NSString *)user
+- (void)sendAudioData:(NSData *)data to:(NSArray *)users
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setObject:@"send" forKey:@"cmd"];
     [params setObject:[NSNumber numberWithInt:[data length]] forKey:@"size"];
+    NSArray *ids = [users filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject length] > 0;
+    }]];
+    
+    [params setObject:ids forKey:@"list"];
     [self fireJSON:params];
     [self fireBLOB:data];
 }

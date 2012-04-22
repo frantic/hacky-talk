@@ -30,6 +30,6 @@
 
 + (HTAPI *)api;
 - (void)signInWithID:(NSString *)userId;
-- (void)sendAudioData:(NSData *)data to:(NSString *)user;
+- (void)sendAudioData:(NSData *)data to:(NSArray *)users;
 
 @end
