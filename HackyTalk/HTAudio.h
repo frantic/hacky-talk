@@ -11,6 +11,9 @@
 
 @interface HTAudio : NSObject
 
+@property (nonatomic, readonly) AVAudioRecorder *recorder;
+@property (nonatomic, readonly) AVAudioPlayer *player;
+
 - (NSData *)recordedData;
 - (void)startRecording;
 - (void)stopRecording;

@@ -8,10 +8,10 @@
 
 #import "HTAudio.h"
 
-@implementation HTAudio {
-    AVAudioRecorder *recorder;
-    AVAudioPlayer *player;
-}
+@implementation HTAudio
+
+@synthesize player = _player;
+@synthesize recorder = _recorder;
 
 - (id)init
 {
@@ -32,11 +32,11 @@
         
         NSError *error = nil;
         
-        recorder = [[AVAudioRecorder alloc] initWithURL:soundURL settings:recorderParams error:&error];
+        _recorder = [[AVAudioRecorder alloc] initWithURL:soundURL settings:recorderParams error:&error];
         if (error) {
             NSLog(@"Something went wrong with aodio: %@", error);
         } else {
-            if ([recorder prepareToRecord])
+            if ([_recorder prepareToRecord])
                 NSLog(@"Recorder is ready!");
             else
                 NSLog(@"Recorder can't be prepared to recording");
@@ -47,46 +47,47 @@
 
 - (void)startRecording
 {
-    [recorder record];
+    [_recorder deleteRecording];
+    [_recorder record];
     NSLog(@"Recording...");
 }
 
 - (void)stopRecording
 {
-    [recorder stop];
+    [_recorder stop];
     NSLog(@"Recorded!");
 }
 
 - (void)play
 {
-    [self playFile:recorder.url.path];
+    [self playFile:_recorder.url.path];
 }
 
 - (void)playData:(NSData *)data
 {
-    [data writeToURL:recorder.url atomically:YES];
+    [data writeToURL:_recorder.url atomically:YES];
     [self play];
 }
 
 - (void)playFile:(NSString *)file
 {
-    if (player.isPlaying) {
+    if (_player.isPlaying) {
         NSLog(@"Player is busy");
     } else {
         NSError *error = nil;
-        player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:file] error:&error];
+        _player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:file] error:&error];
         if (error)
             NSLog(@"Can't play file %@: %@", file, error);
         else {
-            NSLog(@"Playing %f record", [player duration]);
-            [player play];
+            NSLog(@"Playing %f record", [_player duration]);
+            [_player play];
         }
     }
 }
 
 - (NSData *)recordedData
 {
-    return [NSData dataWithContentsOfURL:recorder.url];
+    return [NSData dataWithContentsOfURL:_recorder.url];
 }
 
 @end
