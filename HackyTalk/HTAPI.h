@@ -14,6 +14,7 @@
 
 @protocol HTAPIDelegate <NSObject>
 
+- (void)onlineStatusChangedTo:(BOOL)connected;
 - (void)incomingAudioData:(NSData *)data from:(NSString *)user;
 
 @end

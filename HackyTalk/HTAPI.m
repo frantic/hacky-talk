@@ -21,7 +21,9 @@
 
 @end
 
-@implementation HTAPI
+@implementation HTAPI {
+    NSString *_userId;
+}
 
 @synthesize delegate = _delegate;
 
@@ -40,6 +42,7 @@ static NSData *_zero = nil;
 
 - (void)signInWithID:(NSString *)userId
 {
+    _userId = userId;
     NSError *error = nil;
     if (![socket isConnected]) {
         socket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_current_queue()];
@@ -106,12 +109,20 @@ static NSData *_zero = nil;
 
 - (void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
 {
+    [self.delegate onlineStatusChangedTo:YES];
     NSLog(@"Connection esteblished");
 }
 
 - (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
+    [self.delegate onlineStatusChangedTo:NO];
     NSLog(@"Disconnected %@!", err);
+    [self performSelector:@selector(reconnect) withObject:nil afterDelay:1];
+}
+
+- (void)reconnect
+{
+    [self signInWithID:_userId];
 }
 
 - (Facebook *)fb
