@@ -16,5 +16,6 @@
 - (void)stopRecording;
 - (void)play;
 - (void)playFile:(NSString *)file;
+- (void)playData:(NSData *)data;
 
 @end

@@ -12,12 +12,19 @@
 #import "HTAppDelegate.h"
 #import "JSON.h"
 
+@protocol HTAPIDelegate <NSObject>
+
+- (void)incomingAudioData:(NSData *)data from:(NSString *)user;
+
+@end
+
 @interface HTAPI : NSObject <GCDAsyncSocketDelegate> {
     GCDAsyncSocket *socket;
 }
 
 @property (nonatomic, readonly) BOOL isConnected;
 @property (nonatomic, readonly) Facebook *fb;
+@property (nonatomic, weak) id<HTAPIDelegate> delegate;
 
 + (HTAPI *)api;
 - (void)signInWithID:(NSString *)userId;

@@ -18,13 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[HTViewController alloc] initWithNibName:@"HTViewController" bundle:nil];
-    
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
-    self.window.rootViewController = navigationController;
-    [self.window makeKeyAndVisible];
-    
     _facebook = [[Facebook alloc] initWithAppId:@"279861335436209" andDelegate:self];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
@@ -32,6 +25,13 @@
         _facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         _facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.viewController = [[HTViewController alloc] initWithNibName:@"HTViewController" bundle:nil];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
+    self.window.rootViewController = navigationController;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }

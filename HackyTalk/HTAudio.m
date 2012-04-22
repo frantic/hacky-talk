@@ -62,6 +62,12 @@
     [self playFile:recorder.url.path];
 }
 
+- (void)playData:(NSData *)data
+{
+    [data writeToURL:recorder.url atomically:YES];
+    [self play];
+}
+
 - (void)playFile:(NSString *)file
 {
     if (player.isPlaying) {

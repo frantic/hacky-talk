@@ -11,7 +11,7 @@
 #import "HTAPI.h"
 #import "HTAudio.h"
 
-@interface HTViewController : UIViewController <FBRequestDelegate>
+@interface HTViewController : UIViewController <FBRequestDelegate, HTAPIDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 

@@ -25,6 +25,7 @@
         self.navigationItem.title = @"HackyTalk";
         audio = [[HTAudio alloc] init];
         api = [HTAPI api];
+        api.delegate = self;
     }
     return self;
 }
@@ -32,7 +33,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    connectButton.hidden = [api.fb isSessionValid];
+    [api.fb requestWithGraphPath:@"me" andDelegate:self];
 }
 
 - (IBAction)startRecording:(id)sender
@@ -42,9 +43,13 @@
 
 - (IBAction)stopRecording:(id)sender
 {
+    [self performSelector:@selector(delayedStop) withObject:nil afterDelay:0.5];
+}
+
+- (void)delayedStop
+{
     [audio stopRecording];
     [api sendAudioData:[audio recordedData] to:@"123"];
-    [audio play];
 }
 
 - (IBAction)ping:(id)sender
@@ -66,6 +71,21 @@
 - (IBAction)connectFacebook:(id)sender
 {
     [api.fb authorize:nil];
+}
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+{
+    NSLog(@"Error: %@", error);
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result
+{
+    NSLog(@"ME: %@", result);
+}
+
+- (void)incomingAudioData:(NSData *)data from:(NSString *)user
+{
+    [audio playData:data];
 }
 
 - (void)viewDidUnload {
